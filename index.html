@@ -390,6 +390,83 @@ main input:focus,main select:focus,main textarea:focus{outline:none;box-shadow:0
 body.mode-lansia .sch-card h5,body.mode-lansia .evt-card h5{font-size:1.15rem!important}
 body.mode-lansia .sch-meta,body.mode-lansia .evt-card p,body.mode-lansia .edu-card p,body.mode-lansia .doc-cap p{font-size:1rem!important}
 </style>
+<style id="v11-layout">
+/* ===== V11: LAYOUT FLUID, HEADER ADAPTIF, FOOTER RINGKAS, PERFORMA ===== */
+:root{--gp-max:1600px;--gp-gutter:clamp(1rem,2.4vw,2.5rem)}
+
+/* Satu lebar konten yang sama untuk header, isi halaman, dan footer.
+   Padding sudah termasuk di dalam max-width, sehingga isi tidak lagi menyempit. */
+.gp-wrap{width:100%;max-width:calc(var(--gp-max) + var(--gp-gutter)*2);margin-inline:auto;padding-inline:var(--gp-gutter)}
+.gp-main{padding-block:clamp(1.25rem,2.4vw,2.25rem);min-width:0}
+
+/* Efek grain hanya di layar besar berkursor (ringan untuk HP & tablet sentuh) */
+@media(max-width:1024px),(pointer:coarse){body::before{display:none}}
+
+/* Header: pada tablet & laptop kecil menu turun ke baris kedua agar tidak sempit */
+.gp-header{transform:translateZ(0)}
+@media(min-width:768px) and (max-width:1179px){
+  .gp-hd{flex-wrap:wrap}
+  .gp-hd-brand{order:1;width:auto!important;flex:0 0 auto}
+  .gp-hd-actions{order:2}
+  .gp-hd-nav{order:3;width:100%!important;justify-content:center}
+}
+@media(min-width:1180px) and (max-width:1359px){
+  body.mode-lansia .gp-hd{flex-wrap:wrap}
+  body.mode-lansia .gp-hd-brand{order:1;width:auto!important;flex:0 0 auto}
+  body.mode-lansia .gp-hd-actions{order:2}
+  body.mode-lansia .gp-hd-nav{order:3;width:100%!important;justify-content:center}
+}
+
+/* Hero beranda: tinggi menyesuaikan lebar layar, foto tidak terpotong di bagian kepala */
+.gp-hero{display:flex;align-items:center;min-height:clamp(330px,27vw,440px);background-position:center 15%!important}
+.gp-hero>div{width:100%;max-width:min(100%,44rem)}
+
+/* ---------- Footer ringkas ---------- */
+.gp-footer{margin-top:clamp(1.5rem,3vw,2.5rem);padding-top:clamp(1.25rem,2.4vw,1.75rem);padding-bottom:calc(.75rem + env(safe-area-inset-bottom,0px))}
+.gp-foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem 1.25rem;padding-bottom:1rem;border-bottom:1px solid rgba(124,146,70,.18);font-size:.8125rem;line-height:1.5}
+.gp-foot-brand,.gp-foot-contact{grid-column:1/-1}
+.gp-foot-col{min-width:0}
+.gp-foot-sub{font-size:.6875rem;font-weight:700;color:var(--earth-brown);line-height:1.3}
+.gp-foot-desc{margin-top:.5rem;max-width:34rem;color:var(--earth-brown);font-weight:500}
+.gp-foot-h{font-weight:800;font-size:.875rem;color:var(--deep-green);padding-bottom:.35rem;margin-bottom:.25rem;border-bottom:1px solid rgba(124,146,70,.18)}
+.gp-foot-list{list-style:none;margin:0;padding:0;color:var(--earth-brown);font-weight:500}
+.gp-foot-list a,.gp-foot-list .gp-li{display:flex;align-items:center;gap:.5rem;min-height:30px;border-radius:.375rem}
+.gp-foot-list a{transition:color .15s}
+.gp-foot-list a:hover{color:var(--olive-green)}
+.gp-foot-list a i{font-size:.5rem;color:var(--olive-green);transition:transform .15s}
+.gp-foot-list a:hover i{transform:translateX(2px)}
+.gp-dot{width:.375rem;height:.375rem;border-radius:9999px;background:rgba(124,146,70,.7);flex-shrink:0}
+.gp-foot-contact-body{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1.25rem;margin-top:.5rem;color:var(--earth-brown);font-weight:500}
+.gp-addr{flex:1 1 100%;display:flex;align-items:flex-start;gap:.65rem}
+.gp-addr>span:last-child{padding-top:.3rem}
+.gp-tel{display:flex;align-items:center;gap:.65rem;min-height:36px;transition:color .15s}
+.gp-tel:hover{color:var(--olive-green)}
+.gp-ic{width:2rem;height:2rem;border-radius:.5rem;background:#EBF2DF;color:var(--olive-green);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.gp-maps-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:40px;padding:.5rem 1rem;border-radius:9999px;background:var(--deep-green);color:#fff;font-weight:700;font-size:.75rem;box-shadow:0 2px 6px rgba(30,70,32,.25);transition:background-color .2s}
+.gp-maps-btn:hover{background:var(--olive-green)}
+.gp-foot-dev{display:flex;flex-direction:column;gap:.7rem;margin-top:1rem;padding:.8rem 1rem;border-radius:1rem;border:1px solid rgba(124,146,70,.22);background:rgba(235,242,223,.6)}
+.gp-foot-dev-id{display:flex;align-items:center;gap:.75rem;min-width:0}
+.gp-dev-tag{font-size:.625rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--deep-green);line-height:1.4}
+.gp-foot-dev-txt{min-width:0;padding-top:.7rem;border-top:1px solid rgba(124,146,70,.2)}
+.gp-foot-bottom{display:flex;flex-direction:column;align-items:center;gap:.15rem;padding-top:.75rem;font-size:.6875rem;font-weight:500;color:var(--earth-brown);text-align:center}
+
+@media(min-width:640px){
+  .gp-foot-bottom{flex-direction:row;justify-content:space-between;text-align:left}
+}
+@media(min-width:768px){
+  .gp-foot-grid{grid-template-columns:1.5fr .9fr 1.1fr 1.5fr;column-gap:1.25rem;font-size:.78rem}
+  .gp-foot-brand,.gp-foot-contact{grid-column:auto}
+  .gp-foot-contact-body{flex-direction:column;align-items:flex-start;gap:.5rem}
+  .gp-addr{flex:none}
+  .gp-maps-btn{max-width:100%;text-align:center}
+  .gp-foot-dev{flex-direction:row;align-items:center;gap:1.25rem}
+  .gp-foot-dev-id{flex:0 0 16rem}
+  .gp-foot-dev-txt{padding-top:0;border-top:0;border-left:1px solid rgba(124,146,70,.25);padding-left:1.25rem}
+}
+@media(min-width:1024px){
+  .gp-foot-grid{grid-template-columns:1.5fr 1fr 1fr 1.4fr;column-gap:2.25rem;font-size:.8125rem}
+}
+</style>
 </head>
 <body class="min-h-screen flex flex-col justify-between antialiased bg-[#FAF7F0]">
 
@@ -421,11 +498,11 @@ body.mode-lansia .sch-meta,body.mode-lansia .evt-card p,body.mode-lansia .edu-ca
     </div>
 
     <!-- HEADER NAVIGATION YANG DISEMPURNAKAN UNTUK HP -->
-    <header class="sticky top-0 z-40 bg-[#FAF7F0]/95 backdrop-blur-md px-3 sm:px-4 lg:px-8 py-3 border-b border-olive-green/15 bg-cover bg-center" style="background-image: linear-gradient(rgba(250, 247, 240, 0.90), rgba(250, 247, 240, 0.90)), url('https://lh3.googleusercontent.com/d/1BUX21ccxQ7HkC2VWsya914pOrcSWE851');">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+    <header class="gp-header sticky top-0 z-40 bg-[#FAF7F0]/95 backdrop-blur-md py-3 border-b border-olive-green/15 bg-cover bg-center" style="background-image: linear-gradient(rgba(250, 247, 240, 0.90), rgba(250, 247, 240, 0.90)), url('https://lh3.googleusercontent.com/d/1BUX21ccxQ7HkC2VWsya914pOrcSWE851');">
+        <div class="gp-wrap gp-hd flex flex-col md:flex-row items-center justify-between gap-3">
             
             <!-- Logo & Brand -->
-            <div class="flex items-center justify-between w-full md:w-auto">
+            <div class="gp-hd-brand flex items-center justify-between w-full md:w-auto">
                 <div class="flex items-center space-x-2.5 cursor-pointer" onclick="switchTab('beranda')">
                     <div class="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center flex-shrink-0">
                         <img src="https://lh3.googleusercontent.com/d/1r5Z3o71WH4mpF5qn1Dfeav_V7qNnYldv" alt="Logo" class="w-full h-full object-contain">
@@ -452,7 +529,7 @@ body.mode-lansia .sch-meta,body.mode-lansia .evt-card p,body.mode-lansia .edu-ca
             </div>
 
             <!-- Navigasi Tab (Scrollable di HP) -->
-            <nav class="flex items-center bg-white/90 p-1 rounded-full border border-olive-green/20 shadow-sm overflow-x-auto w-full md:w-auto max-w-full space-x-1 no-scrollbar">
+            <nav aria-label="Menu utama" class="gp-hd-nav flex items-center bg-white/90 p-1 rounded-full border border-olive-green/20 shadow-sm overflow-x-auto w-full md:w-auto max-w-full space-x-1 no-scrollbar">
                 <button onclick="switchTab('beranda')" id="tab-beranda" class="nav-tab active flex items-center whitespace-nowrap text-xs px-3 py-1.5">
                     <i class="fa-solid fa-house mr-1.5"></i>Beranda
                 </button>
@@ -468,7 +545,7 @@ body.mode-lansia .sch-meta,body.mode-lansia .evt-card p,body.mode-lansia .edu-ca
             </nav>
 
             <!-- Tombol Aksi Desktop -->
-            <div class="hidden md:flex items-center space-x-2">
+            <div class="gp-hd-actions hidden md:flex items-center space-x-2">
                 <button onclick="toggleModeLansia()" id="btn-mode-lansia" class="px-3 py-2 bg-white text-earth-brown rounded-xl border border-olive-green/35 text-xs font-bold flex items-center space-x-1.5 hover:bg-soft-yellow transition">
                     <i class="fa-solid fa-eye text-olive-green"></i>
                     <span id="label-mode-lansia">Mode Ramah Lansia</span>
@@ -482,11 +559,11 @@ body.mode-lansia .sch-meta,body.mode-lansia .evt-card p,body.mode-lansia .edu-ca
         </div>
     </header>
     
-    <main class="max-w-7xl mx-auto px-4 lg:px-8 py-6 md:py-8 flex-grow w-full">
+    <main class="gp-wrap gp-main flex-grow w-full">
 
             <!-- TAB BERANDA -->
             <section id="content-beranda" class="space-y-6 md:space-y-8">
-                <div class="white-card p-5 md:p-10 relative overflow-hidden bg-cover bg-center border border-olive-green/20" style="background-image: linear-gradient(to right, rgba(250, 247, 240, 0.75) 0%, rgba(250, 247, 240, 0.65) 55%, rgba(250, 247, 240, 0.20) 100%), url('https://lh3.googleusercontent.com/d/1qFeBSLdwuBHQbQZmIdmam2_LEiFGi3ar');">
+                <div class="gp-hero white-card p-5 md:p-10 relative overflow-hidden bg-cover bg-center border border-olive-green/20" style="background-image: linear-gradient(to right, rgba(250, 247, 240, 0.75) 0%, rgba(250, 247, 240, 0.65) 55%, rgba(250, 247, 240, 0.20) 100%), url('https://lh3.googleusercontent.com/d/1qFeBSLdwuBHQbQZmIdmam2_LEiFGi3ar');">
                     <div class="max-w-3xl space-y-4 md:space-y-5 relative z-10">
                         <div class="inline-flex flex-wrap items-center gap-2 p-2 pr-3 md:pr-4 rounded-2xl bg-white/90 backdrop-blur-md border border-olive-green/25 shadow-sm">
                             <div class="flex items-center gap-1.5 bg-soft-green/60 p-1.5 rounded-xl border border-olive-green/20">
@@ -928,7 +1005,7 @@ body.mode-lansia .sch-meta,body.mode-lansia .evt-card p,body.mode-lansia .edu-ca
         </section>
         
         <!-- TAB DUKUNGAN / SUPPORT -->
-        <section id="content-dukungan" class="hidden space-y-6 md:space-y-8 px-2 sm:px-0">
+        <section id="content-dukungan" class="hidden space-y-6 md:space-y-8">
             
             <div class="text-center max-w-2xl mx-auto space-y-2">
                 <span class="px-3.5 py-1 rounded-full text-xs font-extrabold bg-soft-yellow text-earth-brown border border-sun-yellow/40">
@@ -1462,102 +1539,95 @@ body.mode-lansia .sch-meta,body.mode-lansia .evt-card p,body.mode-lansia .edu-ca
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer id="footer-gp" class="bg-white/90 backdrop-blur-md border-t border-olive-green/20 pt-8 sm:pt-10 pb-6 px-4 lg:px-8 mt-12 bg-cover bg-center" style="background-image: linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.90)), url('https://lh3.googleusercontent.com/d/1BUX21ccxQ7HkC2VWsya914pOrcSWE851');">
+    <!-- FOOTER (V11: ringkas & rapi) -->
+    <footer id="footer-gp" class="gp-footer bg-white/90 border-t border-olive-green/20 bg-cover bg-center" style="background-image: linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.90)), url('https://lh3.googleusercontent.com/d/1BUX21ccxQ7HkC2VWsya914pOrcSWE851');">
+        <div class="gp-wrap">
 
-        <!-- KOLOM INFORMASI: HP 2 kolom | Tablet 3 kolom | Laptop & Komputer 4 kolom -->
-        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr] lg:grid-cols-[1.5fr_1fr_1fr_1.4fr] gap-x-6 gap-y-8 lg:gap-x-10 pb-8 border-b border-olive-green/15 text-xs">
+            <!-- Info utama: HP 2 kolom | Tablet 3 kolom + strip kontak | Laptop & Komputer 4 kolom -->
+            <div class="gp-foot-grid">
 
-            <!-- GO-Positif -->
-            <div class="col-span-2 md:col-span-1 space-y-3">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-xl bg-white p-1 shadow-sm border border-olive-green/20 flex items-center justify-center overflow-hidden flex-shrink-0">
-                        <img
-                            src="https://lh3.googleusercontent.com/d/1r5Z3o71WH4mpF5qn1Dfeav_V7qNnYldv"
-                            alt="Logo GO-Positif Gonoharjo"
-                            class="w-full h-full object-contain"
-                            onerror="this.onerror=null; this.src='https://placehold.co/100x100/1E4620/ffffff?text=GO-Positif';"
-                        >
+                <div class="gp-foot-brand">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-white p-1 shadow-sm border border-olive-green/20 flex items-center justify-center overflow-hidden flex-shrink-0">
+                            <img
+                                src="https://lh3.googleusercontent.com/d/1r5Z3o71WH4mpF5qn1Dfeav_V7qNnYldv"
+                                alt="Logo GO-Positif Gonoharjo"
+                                class="w-full h-full object-contain"
+                                onerror="this.onerror=null; this.src='https://placehold.co/100x100/1E4620/ffffff?text=GO-Positif';"
+                            >
+                        </div>
+                        <div class="min-w-0">
+                            <h4 class="font-extrabold text-sm text-deep-green leading-tight">GO-Positif</h4>
+                            <p class="gp-foot-sub">Posyandu Desa Gonoharjo</p>
+                        </div>
                     </div>
-                    <div class="min-w-0">
-                        <h4 class="font-extrabold text-sm text-deep-green">GO-Positif</h4>
-                        <p class="text-[11px] text-earth-brown font-bold">Posyandu Desa Gonoharjo</p>
+                    <p class="gp-foot-desc">Portal resmi Integrasi Layanan Primer (ILP) Posyandu Desa Gonoharjo. Mewujudkan pelayanan kesehatan terpadu dan ramah keluarga sepanjang siklus hidup.</p>
+                </div>
+
+                <nav aria-label="Navigasi footer" class="gp-foot-col">
+                    <h4 class="gp-foot-h">Navigasi</h4>
+                    <ul class="gp-foot-list">
+                        <li><a href="javascript:void(0)" onclick="switchTab('beranda')"><i class="fa-solid fa-chevron-right"></i><span>Beranda</span></a></li>
+                        <li><a href="javascript:void(0)" onclick="switchTab('layanan')"><i class="fa-solid fa-chevron-right"></i><span>Layanan ILP</span></a></li>
+                        <li><a href="javascript:void(0)" onclick="switchTab('dukungan')"><i class="fa-solid fa-chevron-right"></i><span>Dukungan</span></a></li>
+                        <li><a href="javascript:void(0)" onclick="switchTab('kontak')"><i class="fa-solid fa-chevron-right"></i><span>Kontak &amp; Lokasi</span></a></li>
+                    </ul>
+                </nav>
+
+                <div class="gp-foot-col">
+                    <h4 class="gp-foot-h">Klaster Layanan</h4>
+                    <ul class="gp-foot-list">
+                        <li><span class="gp-li"><span class="gp-dot"></span>Balita</span></li>
+                        <li><span class="gp-li"><span class="gp-dot"></span>Remaja</span></li>
+                        <li><span class="gp-li"><span class="gp-dot"></span>Ibu Hamil &amp; Menyusui</span></li>
+                        <li><span class="gp-li"><span class="gp-dot"></span>Usia Produktif</span></li>
+                        <li><span class="gp-li"><span class="gp-dot"></span>Lanjut Usia</span></li>
+                    </ul>
+                </div>
+
+                <div class="gp-foot-col gp-foot-contact">
+                    <h4 class="gp-foot-h">Sekretariat &amp; Peta</h4>
+                    <div class="gp-foot-contact-body">
+                        <p class="gp-addr">
+                            <span class="gp-ic"><i class="fa-solid fa-location-dot"></i></span>
+                            <span>Balai Desa Gonoharjo, Kec. Limbangan, Kab. Kendal, Jawa Tengah 51381</span>
+                        </p>
+                        <a href="tel:+6281234567890" class="gp-tel">
+                            <span class="gp-ic"><i class="fa-solid fa-phone"></i></span>
+                            <span>+62 812-3456-7890</span>
+                        </a>
+                        <a href="https://maps.app.goo.gl/NmTfdSzSU8gGeZUMA" target="_blank" rel="noopener noreferrer" class="gp-maps-btn">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                            <span>Buka Google Maps Resmi ↗</span>
+                        </a>
                     </div>
                 </div>
-                <p class="text-earth-brown text-xs font-medium leading-relaxed max-w-md">
-                    Portal resmi Integrasi Layanan Primer (ILP) Posyandu Desa Gonoharjo. Mewujudkan pelayanan kesehatan terpadu dan ramah keluarga sepanjang siklus hidup.
-                </p>
+
             </div>
 
-            <!-- Navigasi -->
-            <nav aria-label="Navigasi footer" class="min-w-0">
-                <h4 class="font-extrabold text-sm text-deep-green border-b border-olive-green/15 pb-1.5 mb-1.5">Navigasi</h4>
-                <ul class="text-earth-brown font-medium">
-                    <li><a href="javascript:void(0)" onclick="switchTab('beranda')" class="group flex items-center gap-2 py-2 rounded hover:text-olive-green focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive-green/60 transition"><i class="fa-solid fa-chevron-right text-[8px] text-olive-green transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"></i><span>Beranda</span></a></li>
-                    <li><a href="javascript:void(0)" onclick="switchTab('layanan')" class="group flex items-center gap-2 py-2 rounded hover:text-olive-green focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive-green/60 transition"><i class="fa-solid fa-chevron-right text-[8px] text-olive-green transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"></i><span>Layanan ILP</span></a></li>
-                    <li><a href="javascript:void(0)" onclick="switchTab('dukungan')" class="group flex items-center gap-2 py-2 rounded hover:text-olive-green focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive-green/60 transition"><i class="fa-solid fa-chevron-right text-[8px] text-olive-green transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"></i><span>Dukungan</span></a></li>
-                    <li><a href="javascript:void(0)" onclick="switchTab('kontak')" class="group flex items-center gap-2 py-2 rounded hover:text-olive-green focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive-green/60 transition"><i class="fa-solid fa-chevron-right text-[8px] text-olive-green transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"></i><span>Kontak &amp; Lokasi</span></a></li>
-                </ul>
-            </nav>
-
-            <!-- Klaster Layanan -->
-            <div class="min-w-0">
-                <h4 class="font-extrabold text-sm text-deep-green border-b border-olive-green/15 pb-1.5 mb-1.5">Klaster Layanan</h4>
-                <ul class="text-earth-brown font-medium">
-                    <li class="flex items-center gap-2 py-2"><span class="w-1.5 h-1.5 rounded-full bg-olive-green/70 flex-shrink-0"></span>Balita</li>
-                    <li class="flex items-center gap-2 py-2"><span class="w-1.5 h-1.5 rounded-full bg-olive-green/70 flex-shrink-0"></span>Remaja</li>
-                    <li class="flex items-center gap-2 py-2"><span class="w-1.5 h-1.5 rounded-full bg-olive-green/70 flex-shrink-0"></span>Ibu Hamil &amp; Menyusui</li>
-                    <li class="flex items-center gap-2 py-2"><span class="w-1.5 h-1.5 rounded-full bg-olive-green/70 flex-shrink-0"></span>Usia Produktif</li>
-                    <li class="flex items-center gap-2 py-2"><span class="w-1.5 h-1.5 rounded-full bg-olive-green/70 flex-shrink-0"></span>Lanjut Usia</li>
-                </ul>
-            </div>
-
-            <!-- Sekretariat & Peta -->
-            <div class="col-span-2 md:col-span-3 lg:col-span-1 min-w-0">
-                <h4 class="font-extrabold text-sm text-deep-green border-b border-olive-green/15 pb-1.5 mb-3">Sekretariat &amp; Peta</h4>
-                <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8 sm:gap-y-3 lg:flex-col lg:items-start">
-                    <p class="flex items-start gap-3 text-earth-brown font-medium leading-relaxed sm:max-w-md lg:max-w-none">
-                        <span class="w-8 h-8 rounded-lg bg-soft-green text-olive-green flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-location-dot"></i></span>
-                        <span class="pt-1">Balai Desa Gonoharjo, Kec. Limbangan, Kab. Kendal, Jawa Tengah 51381</span>
-                    </p>
-                    <a href="tel:+6281234567890" class="group flex items-center gap-3 text-earth-brown font-medium rounded hover:text-olive-green focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive-green/60 transition">
-                        <span class="w-8 h-8 rounded-lg bg-soft-green text-olive-green flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-phone"></i></span>
-                        <span>+62 812-3456-7890</span>
-                    </a>
-                    <a href="https://maps.app.goo.gl/NmTfdSzSU8gGeZUMA" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full sm:w-auto rounded-full bg-deep-green hover:bg-olive-green text-white font-bold text-[11px] sm:text-xs px-4 py-2.5 shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive-green/60 focus-visible:ring-offset-2">
-                        <i class="fa-solid fa-map-location-dot"></i>
-                        <span>Buka Google Maps Resmi ↗</span>
-                    </a>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- PENGEMBANG SISTEM & DISKLAIMER -->
-        <div class="max-w-7xl mx-auto py-6 border-b border-olive-green/15">
-            <div class="rounded-2xl border border-olive-green/20 bg-soft-green/60 p-4 sm:p-5 flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
-                <div class="flex items-center gap-3 md:w-72 lg:w-80 flex-shrink-0">
-                    <div class="w-11 h-11 rounded-xl bg-deep-green text-white flex items-center justify-center flex-shrink-0 shadow-sm">
+            <!-- Pengembang sistem & disklaimer (satu baris ringkas) -->
+            <div class="gp-foot-dev">
+                <div class="gp-foot-dev-id">
+                    <div class="w-10 h-10 rounded-xl bg-deep-green text-white flex items-center justify-center flex-shrink-0 shadow-sm">
                         <i class="fa-solid fa-code text-sm"></i>
                     </div>
                     <div class="min-w-0">
-                        <h4 class="font-extrabold text-sm text-deep-green">Pengembang Sistem</h4>
-                        <span class="text-[10px] font-black text-deep-green uppercase tracking-wider block">Inovasi Digital Posyandu</span>
-                        <p class="font-extrabold text-earth-brown text-xs break-words">@KreasiCahNdeso</p>
-                        <p class="text-[11px] text-earth-brown/70 font-medium leading-snug">Sistem Informasi Posyandu ILP Desa Gonoharjo</p>
+                        <h4 class="font-extrabold text-sm text-deep-green leading-tight">Pengembang Sistem</h4>
+                        <p class="gp-dev-tag">Inovasi Digital Posyandu</p>
+                        <p class="font-extrabold text-earth-brown break-words leading-tight" style="font-size:.8125rem">@KreasiCahNdeso</p>
                     </div>
                 </div>
-                <div class="min-w-0 md:flex-1 md:border-l md:border-olive-green/25 md:pl-6 pt-4 md:pt-0 border-t border-olive-green/20 md:border-t-0">
-                    <p class="text-[11px] sm:text-xs font-extrabold text-deep-green mb-1">© 2026 GO-POSITIF by @KreasiCahNdeso</p>
-                    <p class="text-[11px] sm:text-xs text-earth-brown/80 font-medium leading-relaxed">Murni dikembangkan untuk kemajuan digitalisasi akses di desa secara mandiri, non-komersial, non-politis, dan tidak dapat diklaim atau direplikasi oleh pihak manapun tanpa izin tertulis dari pemilik @KreasiCahNdeso.</p>
+                <div class="gp-foot-dev-txt">
+                    <p class="font-extrabold text-deep-green" style="font-size:.75rem">© 2026 GO-POSITIF by @KreasiCahNdeso</p>
+                    <p class="text-earth-brown/80 font-medium" style="font-size:.75rem;line-height:1.55">Sistem Informasi Posyandu ILP Desa Gonoharjo. Murni dikembangkan untuk kemajuan digitalisasi akses di desa secara mandiri, non-komersial, non-politis, dan tidak dapat diklaim atau direplikasi oleh pihak manapun tanpa izin tertulis dari pemilik @KreasiCahNdeso.</p>
                 </div>
             </div>
-        </div>
 
-        <!-- BARIS PALING BAWAH -->
-        <div class="max-w-7xl mx-auto pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-earth-brown font-medium gap-1 sm:gap-2 text-center sm:text-left">
-            <p>All rights reserved.</p>
-            <p class="text-olive-green font-bold">Kecamatan Limbangan, Kabupaten Kendal, Jawa Tengah</p>
+            <div class="gp-foot-bottom">
+                <p>All rights reserved.</p>
+                <p class="text-olive-green font-bold">Kecamatan Limbangan, Kabupaten Kendal, Jawa Tengah</p>
+            </div>
+
         </div>
     </footer>
 
